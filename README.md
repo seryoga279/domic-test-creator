@@ -1,2 +1,2 @@
-DOMIC-Test-Creator
+domic-Test-Creator
 ==================
