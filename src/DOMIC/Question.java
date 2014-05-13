@@ -18,13 +18,13 @@ public class Question {
         Answer answer = new Answer(text, correct);
         answers.add(answer);
     }
-    public String getAnswerText(int i){
-        Answer text = answers.get(i);
+    public String getAnswerText(int indexQuestion){
+        Answer text = answers.get(indexQuestion);
         return text.getAnswerText();
     
     }
-     public boolean getAnswerCorrect(int i){
-        Answer text = answers.get(i);
+     public boolean getAnswerCorrect(int indexQuestion){
+        Answer text = answers.get(indexQuestion);
         return text.getAnswerCorrect();
     
     }

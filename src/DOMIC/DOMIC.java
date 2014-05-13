@@ -10,7 +10,7 @@ package DOMIC;
  *
  * @author Сергей
  */
-public class ISITProject {
+public class DOMIC {
 
     /**
      * @param args the command line arguments

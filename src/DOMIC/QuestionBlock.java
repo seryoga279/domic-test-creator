@@ -16,17 +16,17 @@ public class QuestionBlock {
       public void addQuestion(int indexQuestion, Question question){
            questions.add(indexQuestion,question);      
 }
-      public String getAnswerText(int index_questions, int index_answer){
-          Question question = questions.get(index_questions);
-          return question.getAnswerText(index_answer);
+      public String getAnswerText(int indexQuestions, int indexAnswer){
+          Question question = questions.get(indexQuestions);
+          return question.getAnswerText(indexAnswer);
          
 }
-      public boolean getAnswerCorrect(int index_questions, int index_answer){
-          Question question = questions.get(index_questions);
-          return question.getAnswerCorrect(index_answer);
+      public boolean getAnswerCorrect(int indexQuestions, int indexAnswer){
+          Question question = questions.get(indexQuestions);
+          return question.getAnswerCorrect(indexAnswer);
       }
-      public String getQuestionName(int index_questions){
-          Question question = questions.get(index_questions);
+      public String getQuestionName(int indexQuestions){
+          Question question = questions.get(indexQuestions);
           return question.getQuestionName();
           
       }
