@@ -323,8 +323,8 @@ public class Start_Page extends javax.swing.JFrame {
                jTree1.getSelectionPath().getParentPath().getLastPathComponent()))
                .addQuestion(
                        jTree1.getModel().getIndexOfChild(
-                               jTree1.getSelectionPath().getParentPath().getParentPath().getLastPathComponent(),
-                               jTree1.getSelectionPath().getParentPath().getLastPathComponent())
+                               jTree1.getSelectionPath().getParentPath().getLastPathComponent(),
+                               jTree1.getSelectionPath().getLastPathComponent())
                        ,question); 
        
        
@@ -335,18 +335,17 @@ public class Start_Page extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-Object parent = jTree1.getSelectionPath().getParentPath().getLastPathComponent();
-Object child = jTree1.getSelectionPath().getLastPathComponent();
+Object parent = jTree1.getSelectionPath().getParentPath().getParentPath().getLastPathComponent();
+Object child = jTree1.getSelectionPath().getParentPath().getLastPathComponent();
 
 
 
 
- 
 
 //System.out.println(child);
 //System.out.println(parent);
 
-System.out.println(jTree1.getModel().getIndexOfChild( parent, child));
+//System.out.println(jTree1.getModel().getIndexOfChild( parent, child));
 //System.out.println(treeModel.getChildCount(parent)); // количество элементов в выбранном узле
 //System.out.println(jTree1.getSelectionPath().getLastPathComponent());// последний выбранный компонент 
 //System.out.println(jTree1.getSelectionPath().getParentPath().getLastPathComponent());//родитель выбранного компонента
