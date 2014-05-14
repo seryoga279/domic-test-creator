@@ -335,11 +335,11 @@ public class Start_Page extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-Object parent = jTree1.getSelectionPath().getParentPath().getParentPath().getLastPathComponent();
-Object child = jTree1.getSelectionPath().getParentPath().getLastPathComponent();
+//Object parent = jTree1.getSelectionPath().getParentPath().getParentPath().getLastPathComponent();
+//Object child = jTree1.getSelectionPath().getParentPath().getLastPathComponent();
 
 
-GeneratePerl gP = new GeneratePerl(this.questionBlocks.get(0));
+GeneratePerl gP = new GeneratePerl(this.questionBlocks);
 
 System.out.println(gP.getPerl());
 

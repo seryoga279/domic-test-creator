@@ -7,6 +7,7 @@
 package DOMIC;
 
 
+import java.util.ArrayList;
 import java.util.Formatter;
 
 /**
@@ -17,20 +18,19 @@ public class GeneratePerl {
     
     StringBuilder parseToPerl = new StringBuilder();
     
-    GeneratePerl(QuestionBlock questionBlock){
-        
-        StringBuilder parse = new StringBuilder();
+    GeneratePerl(ArrayList<QuestionBlock> questionBlock){
        
              this.parseToPerl.append("[");
+             for(int i=0; i<questionBlock.size(); i++){ 
              
-        for (int i=0; i<questionBlock.questions.size(); i++){
+        for (int j=0; j<questionBlock.get(i).questions.size(); j++){
             
              
-             this.parseToPerl.append("{-qu=> '" + questionBlock.getQuestionName(i) + "'-sa [=>");
+             this.parseToPerl.append("{-qu=> '" + questionBlock.get(i).getQuestionName(j) + "'-sa [=>");
             
-            for(int j=0; j<questionBlock.questions.get(i).answers.size(); j++){
+            for(int k=0; k<questionBlock.get(i).questions.get(k).answers.size(); k++){
               
-                this.parseToPerl.append("'" + questionBlock.getAnswerText(i, j) + "',");
+                this.parseToPerl.append("'" + questionBlock.get(i).getAnswerText(j, k) + "',");
             }
             this.parseToPerl.deleteCharAt(this.parseToPerl.length()-1);
             
@@ -42,6 +42,7 @@ public class GeneratePerl {
              this.parseToPerl.append("]");
         
         
+    }
     }
      public StringBuilder getPerl(){
          
