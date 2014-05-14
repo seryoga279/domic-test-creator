@@ -14,7 +14,7 @@ public class QuestionBlock {
       ArrayList<Question>  questions = new ArrayList<>();
       
       public void addQuestion(int indexQuestion, Question question){
-           questions.add(indexQuestion,question);      
+           questions.set(indexQuestion,question);      
 }
       public String getAnswerText(int indexQuestions, int indexAnswer){
           Question question = questions.get(indexQuestions);

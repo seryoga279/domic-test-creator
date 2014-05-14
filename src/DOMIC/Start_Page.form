@@ -131,12 +131,12 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="24" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="&#x41d;&#x43e;&#x432;&#x44b;&#x439; &#x442;&#x435;&#x441;&#x442;"/>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;p align=&quot;center&quot;&gt;&#x41d;&#x43e;&#x432;&#x44b;&#x439; &#x442;&#x435;&#x441;&#x442;&lt;/p&gt;&lt;/html&gt;"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value=" &lt;html&gt;&#x414;&#x43b;&#x44f; &#x441;&#x43e;&#x437;&#x434;&#x430;&#x43d;&#x438;&#x435; &#x43d;&#x43e;&#x432;&#x43e;&#x433;&#x43e; &#x43d;&#x430;&#x43f;&#x438;&#x448;&#x438;&#x442;&#x435; &#x442;&#x435;&#x43a;&#x441;&#x442; &#x435;&#x433;&#x43e; &#x441;&#x43e;&#x434;&#x435;&#x440;&#x436;&#x430;&#x43d;&#x438;&#x44f; &#x432; &#x442;&#x435;&#x43a;&#x441;&#x442;&#x43e;&#x432;&#x43e;&#x435; &#x43f;&#x43e;&#x43b;&#x435;, &#x432;&#x44b;&#x431;&#x435;&#x440;&#x438;&#x442;&#x435; &#x43d;&#x435;&#x43e;&#x431;&#x445;&#x43e;&#x434;&#x438;&#x43c;&#x43e;&#x435; &#x43a;&#x43e;&#x43b;&#x438;&#x447;&#x435;&#x441;&#x442;&#x432;&#x43e; &#x43f;&#x440;&#x430;&#x432;&#x438;&#x43b;&#x44c;&#x43d;&#x44b;&#x445; &#x432;&#x430;&#x440;&#x438;&#x430;&#x43d;&#x442;&#x43e;&#x432; &#x43e;&#x442;&#x432;&#x435;&#x442;&#x430;,&lt;br&gt;&#x434;&#x43b;&#x44f; &#x43f;&#x435;&#x440;&#x435;&#x445;&#x43e;&#x434;&#x430; &#x43a; &#x441;&#x43e;&#x437;&#x434;&#x430;&#x43d;&#x438;&#x44e; &#x441;&#x43b;&#x435;&#x434;&#x443;&#x44e;&#x449;&#x435;&#x433;&#x43e; &#x432;&#x43e;&#x43f;&#x440;&#x43e;&#x441;&#x430; &#x43d;&#x430;&#x436;&#x43c;&#x438;&#x442;&#x435; &quot;&#x414;&#x430;&#x43b;&#x435;&#x435;&quot;, &#x43f;&#x43e; &#x43e;&#x43a;&#x43e;&#x43d;&#x447;&#x430;&#x43d;&#x438;&#x44e; &#x440;&#x430;&#x431;&#x43e;&#x442;&#x44b; &#x43d;&#x430;&#x436;&#x43c;&#x438;&#x442;&#x435; &quot;&#x413;&#x43e;&#x442;&#x43e;&#x432;&#x43e;&quot; &lt;/html&gt;"/>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;p align=&quot;center&quot;&gt;&#x414;&#x43b;&#x44f; &#x441;&#x43e;&#x437;&#x434;&#x430;&#x43d;&#x438;&#x435; &#x43d;&#x43e;&#x432;&#x43e;&#x433;&#x43e; &#x43d;&#x430;&#x43f;&#x438;&#x448;&#x438;&#x442;&#x435; &#x442;&#x435;&#x43a;&#x441;&#x442; &#x435;&#x433;&#x43e; &#x441;&#x43e;&#x434;&#x435;&#x440;&#x436;&#x430;&#x43d;&#x438;&#x44f; &#x432; &#x442;&#x435;&#x43a;&#x441;&#x442;&#x43e;&#x432;&#x43e;&#x435; &#x43f;&#x43e;&#x43b;&#x435;, &#x432;&#x44b;&#x431;&#x435;&#x440;&#x438;&#x442;&#x435; &#x43d;&#x435;&#x43e;&#x431;&#x445;&#x43e;&#x434;&#x438;&#x43c;&#x43e;&#x435; &#x43a;&#x43e;&#x43b;&#x438;&#x447;&#x435;&#x441;&#x442;&#x432;&#x43e; &#x43f;&#x440;&#x430;&#x432;&#x438;&#x43b;&#x44c;&#x43d;&#x44b;&#x445; &#x432;&#x430;&#x440;&#x438;&#x430;&#x43d;&#x442;&#x43e;&#x432; &#x43e;&#x442;&#x432;&#x435;&#x442;&#x430;, &#x434;&#x43b;&#x44f; &#x43f;&#x435;&#x440;&#x435;&#x445;&#x43e;&#x434;&#x430; &#x43a; &#x441;&#x43e;&#x437;&#x434;&#x430;&#x43d;&#x438;&#x44e; &#x441;&#x43b;&#x435;&#x434;&#x443;&#x44e;&#x449;&#x435;&#x433;&#x43e; &#x432;&#x43e;&#x43f;&#x440;&#x43e;&#x441;&#x430; &#x43d;&#x430;&#x436;&#x43c;&#x438;&#x442;&#x435; &quot;&#x414;&#x430;&#x43b;&#x435;&#x435;&quot;, &#x43f;&#x43e; &#x43e;&#x43a;&#x43e;&#x43d;&#x447;&#x430;&#x43d;&#x438;&#x44e; &#x440;&#x430;&#x431;&#x43e;&#x442;&#x44b; &#x43d;&#x430;&#x436;&#x43c;&#x438;&#x442;&#x435; &quot;&#x413;&#x43e;&#x442;&#x43e;&#x432;&#x43e;&quot;&lt;/p&gt; &lt;/html&gt;"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Default Cursor"/>
         </Property>
@@ -238,7 +238,7 @@
                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="924" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

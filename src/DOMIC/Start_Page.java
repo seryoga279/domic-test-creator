@@ -121,9 +121,9 @@ public class Start_Page extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("Новый тест");
+        jLabel1.setText("<html><p align=\"center\">Новый тест</p></html>");
 
-        jLabel2.setText(" <html>Для создание нового напишите текст его содержания в текстовое поле, выберите необходимое количество правильных вариантов ответа,<br>для перехода к созданию следующего вопроса нажмите \"Далее\", по окончанию работы нажмите \"Готово\" </html>");
+        jLabel2.setText("<html><p align=\"center\">Для создание нового напишите текст его содержания в текстовое поле, выберите необходимое количество правильных вариантов ответа, для перехода к созданию следующего вопроса нажмите \"Далее\", по окончанию работы нажмите \"Готово\"</p> </html>");
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jButton2.setText("Назад");
@@ -186,7 +186,7 @@ public class Start_Page extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addGap(50, 50, 50)
                 .addComponent(jLabel6)
-                .addContainerGap(924, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,7 +233,7 @@ public class Start_Page extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -337,6 +337,11 @@ public class Start_Page extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 Object parent = jTree1.getSelectionPath().getParentPath().getParentPath().getLastPathComponent();
 Object child = jTree1.getSelectionPath().getParentPath().getLastPathComponent();
+
+
+GeneratePerl gP = new GeneratePerl(this.questionBlocks.get(0));
+
+System.out.println(gP.getPerl());
 
 
 
