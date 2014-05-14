@@ -29,6 +29,7 @@ public class Start_Page extends javax.swing.JFrame {
     public DefaultTreeModel treeModel = new DefaultTreeModel(rootNode);
     public MyCellRenderer renderer = new MyCellRenderer();
     public ArrayList<QuestionBlock> questionBlocks = new ArrayList<>();
+    public ArrayList<QuestionBlock> questionBlocks_2 = new ArrayList<>();
     public int QuestionBlockIndex = 1;
    // public int QuestionIndex=0;
    
@@ -116,6 +117,7 @@ public class Start_Page extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -225,6 +227,13 @@ public class Start_Page extends javax.swing.JFrame {
             }
         });
 
+        jButton8.setText("jButton8");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -253,7 +262,10 @@ public class Start_Page extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(236, 236, 236)
+                                        .addComponent(jButton8)))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -296,7 +308,8 @@ public class Start_Page extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton5))
+                    .addComponent(jButton5)
+                    .addComponent(jButton8))
                 .addGap(21, 21, 21)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
@@ -494,9 +507,9 @@ System.out.println(gP.getPerl());
 
     private void jTree1ValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_jTree1ValueChanged
        
-        this.jTextArea1.setText("");
-        this.listModel.clear();
-         this.jLabel3.setText(null);
+        //this.jTextArea1.setText("");
+        //this.listModel.clear();
+        this.jLabel3.setText(null);
        try{
         int QuestionBlockIndex = jTree1.getModel().getIndexOfChild( 
             jTree1.getSelectionPath().getParentPath().getParentPath().getLastPathComponent(),
@@ -533,6 +546,21 @@ System.out.println(gP.getPerl());
       
         
     }//GEN-LAST:event_jTree1ValueChanged
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+       for(int i=0; i<3; i++){ 
+           this.questionBlocks_2.add(new QuestionBlock());
+           for (int j = 0; j<3; j++){
+               this.questionBlocks_2.get(i).addQuestion(j, new Question("TextAnswer-"+i+"-"+j));
+               for (int k=0; k<3;k++){
+                   this.questionBlocks_2.get(i).questions.get(j).answers.get(k).text = "question-"+i+"-"+j+"-"+k;
+                   this.questionBlocks_2.get(i).questions.get(j).answers.get(k).correct = false;
+                   
+               }
+           }
+       }
+          
+    }//GEN-LAST:event_jButton8ActionPerformed
     
     
     
@@ -555,6 +583,7 @@ System.out.println(gP.getPerl());
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
