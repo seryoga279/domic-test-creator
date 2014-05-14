@@ -20,15 +20,16 @@ public class GeneratePerl {
     
     GeneratePerl(ArrayList<QuestionBlock> questionBlock){
        
-             this.parseToPerl.append("[");
+             this.parseToPerl.append("$test = [");
              for(int i=0; i<questionBlock.size(); i++){ 
+                 this.parseToPerl.append("[");
              
         for (int j=0; j<questionBlock.get(i).questions.size(); j++){
             
              
              this.parseToPerl.append("{-qu=> '" + questionBlock.get(i).getQuestionName(j) + "'-sa [=>");
             
-            for(int k=0; k<questionBlock.get(i).questions.get(k).answers.size(); k++){
+            for(int k=0; k<questionBlock.get(i).questions.get(j).answers.size(); k++){
               
                 this.parseToPerl.append("'" + questionBlock.get(i).getAnswerText(j, k) + "',");
             }
@@ -39,7 +40,7 @@ public class GeneratePerl {
         }
        
        
-             this.parseToPerl.append("]");
+             this.parseToPerl.append("]]");
         
         
     }
