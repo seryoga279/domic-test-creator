@@ -3,44 +3,39 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package DOMIC;
 
 import java.util.ArrayList;
 
 public class Question {
-    
-   ArrayList<Answer> answers = new ArrayList<>();
-   String text;
-   
-    
-    public void addAnswer(boolean correct, String text){
+
+    ArrayList<Answer> answers = new ArrayList<>();
+    String text;
+
+    public void addAnswer(boolean correct, String text) {
         Answer answer = new Answer(text, correct);
         answers.add(answer);
     }
-    public String getAnswerText(int indexQuestion){
+
+    public String getAnswerText(int indexQuestion) {
         Answer text = answers.get(indexQuestion);
         return text.getAnswerText();
-    
+
     }
-     public boolean getAnswerCorrect(int indexQuestion){
+
+    public boolean getAnswerCorrect(int indexQuestion) {
         Answer text = answers.get(indexQuestion);
         return text.getAnswerCorrect();
-    
+
     }
-     public String getQuestionName(){
-         return this.text;
-     }
-     
-    
-    
-    public Question(String text){
+
+    public String getQuestionName() {
+        return this.text;
+    }
+
+    public Question(String text) {
         this.text = text;
-        
+
     }
-    
-    
+
 }
-
-
-

@@ -3,9 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package DOMIC;
-
 
 import java.util.ArrayList;
 import javax.swing.*;
@@ -13,17 +11,14 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
-import javax.swing.tree.TreeSelectionModel; 
-
+import javax.swing.tree.TreeSelectionModel;
 
 /**
  *
  * @author Сергей
  */
 public class Start_Page extends javax.swing.JFrame {
- 
-   
-    
+
     public DefaultListModel listModel = new DefaultListModel();
     public DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode();
     public DefaultTreeModel treeModel = new DefaultTreeModel(rootNode);
@@ -32,21 +27,11 @@ public class Start_Page extends javax.swing.JFrame {
     public ArrayList<QuestionBlock> questionBlocks_2 = new ArrayList<>();
     public int QuestionBlockIndex = 1;
    // public int QuestionIndex=0;
-   
-    
-    
-    
-    
-    
-    
-    
-    
-        
-  
+
     public Start_Page() {
-                       
+
         initComponents();
-       
+
         jList1.setLayoutOrientation(JList.VERTICAL);
         jList1.setModel(listModel);
         jTree1.setEditable(true);
@@ -54,38 +39,30 @@ public class Start_Page extends javax.swing.JFrame {
         jTree1.setShowsRootHandles(true);
         // Корневой узел
         DefaultMutableTreeNode root = new DefaultMutableTreeNode("Тест");
-        for (int i = 1; i < 2; i++){
+        for (int i = 1; i < 2; i++) {
             // Содержимое корневого узла 
-            DefaultMutableTreeNode folder = new DefaultMutableTreeNode("Блок вопросов " + i );
+            DefaultMutableTreeNode folder = new DefaultMutableTreeNode("Блок вопросов " + i);
             root.add(folder);
-            
-                // Содержимое папок корневого узла
-                DefaultMutableTreeNode leaf = new DefaultMutableTreeNode("вопрос " + i );
-                leaf.setAllowsChildren(false);
-                folder.add(leaf);
-           
+
+            // Содержимое папок корневого узла
+            DefaultMutableTreeNode leaf = new DefaultMutableTreeNode("вопрос " + i);
+            leaf.setAllowsChildren(false);
+            folder.add(leaf);
+
         }
         treeModel = new DefaultTreeModel(root, true);
         jTree1.setModel(treeModel);
         jLabel4.setText(null);
-        
-        
-       
-      
-      this.questionBlocks.add(new QuestionBlock());
-      
-      Question question = new Question(null);
-      question.addAnswer(false, null);
-      
-      this.questionBlocks.get(0).questions.add(new Question(null));
-        
-       
 
-        
-        
-        
+        this.questionBlocks.add(new QuestionBlock());
+
+        Question question = new Question(null);
+        question.addAnswer(false, null);
+
+        this.questionBlocks.get(0).questions.add(new Question(null));
+
     }
-   
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -307,50 +284,38 @@ public class Start_Page extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-     
-     
+
         Question question = new Question(jTextArea1.getText());
-         for(int i=0; i<listModel.getSize(); i++){
+        for (int i = 0; i < listModel.getSize(); i++) {
             String text = String.valueOf(listModel.getElementAt(i));
             boolean correct = jList1.isSelectedIndex(i);
-            question.addAnswer(correct,text);
-        
-         }
-         
-        
-       
-       this.questionBlocks.get(jTree1.getModel().getIndexOfChild( 
-               jTree1.getSelectionPath().getParentPath().getParentPath().getLastPathComponent(),
-               jTree1.getSelectionPath().getParentPath().getLastPathComponent()))
-               .addQuestion(
-                       jTree1.getModel().getIndexOfChild(
-                               jTree1.getSelectionPath().getParentPath().getLastPathComponent(),
-                               jTree1.getSelectionPath().getLastPathComponent())
-                       ,question); 
-       
-       
-       this.jLabel3.setText("save");
-       
-      
-      
+            question.addAnswer(correct, text);
+
+        }
+
+        this.questionBlocks.get(jTree1.getModel().getIndexOfChild(
+                jTree1.getSelectionPath().getParentPath().getParentPath().getLastPathComponent(),
+                jTree1.getSelectionPath().getParentPath().getLastPathComponent()))
+                .addQuestion(
+                        jTree1.getModel().getIndexOfChild(
+                                jTree1.getSelectionPath().getParentPath().getLastPathComponent(),
+                                jTree1.getSelectionPath().getLastPathComponent()), question);
+
+        this.jLabel3.setText("save");
+
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 //Object parent = jTree1.getSelectionPath().getParentPath().getParentPath().getLastPathComponent();
 //Object child = jTree1.getSelectionPath().getParentPath().getLastPathComponent();
 
+        GeneratePerl gP = new GeneratePerl(this.questionBlocks);
 
-GeneratePerl gP = new GeneratePerl(this.questionBlocks);
-
-System.out.println(gP.getPerl());
-
-
-
-
+        System.out.println(gP.getPerl());
 
 //System.out.println(child);
 //System.out.println(parent);
-
 //System.out.println(jTree1.getModel().getIndexOfChild( parent, child));
 //System.out.println(treeModel.getChildCount(parent)); // количество элементов в выбранном узле
 //System.out.println(jTree1.getSelectionPath().getLastPathComponent());// последний выбранный компонент 
@@ -365,119 +330,112 @@ System.out.println(gP.getPerl());
 //System.out.println(question.getAnswerText(0));
 //System.out.println(questionBlocks.get(0).getAnswerText(0, 0));
 
-
-
-
-
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-       DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode)jTree1.getLastSelectedPathComponent();
-        
-        if (selectedNode == null) return;
-        
-        DefaultMutableTreeNode parent = (DefaultMutableTreeNode)selectedNode;
+        DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) jTree1.getLastSelectedPathComponent();
 
-        if (parent == null) return;
-        if ("Тест".equals(String.valueOf(jTree1.getSelectionPath().getLastPathComponent()))) return;
-        
-        DefaultMutableTreeNode newNode = new DefaultMutableTreeNode("Вопрос " + (treeModel.getChildCount(jTree1.getSelectionPath().getLastPathComponent())+1));
+        if (selectedNode == null) {
+            return;
+        }
+
+        DefaultMutableTreeNode parent = (DefaultMutableTreeNode) selectedNode;
+
+        if (parent == null) {
+            return;
+        }
+        if ("Тест".equals(String.valueOf(jTree1.getSelectionPath().getLastPathComponent()))) {
+            return;
+        }
+
+        DefaultMutableTreeNode newNode = new DefaultMutableTreeNode("Вопрос " + (treeModel.getChildCount(jTree1.getSelectionPath().getLastPathComponent()) + 1));
         newNode.setAllowsChildren(false);
         int selectedIndex = parent.getIndex(selectedNode);
-        treeModel.insertNodeInto(newNode, parent, selectedIndex + treeModel.getChildCount(parent)+1);
-        
-   
+        treeModel.insertNodeInto(newNode, parent, selectedIndex + treeModel.getChildCount(parent) + 1);
+
         // Отображение нового узла.
-        TreeNode [] nodes = treeModel.getPathToRoot(newNode);
+        TreeNode[] nodes = treeModel.getPathToRoot(newNode);
         TreePath path = new TreePath(nodes);
         jTree1.scrollPathToVisible(path);
 
        // 
-        
-            try {
-        this.questionBlocks.get(
-                jTree1.getModel().getIndexOfChild(
-                        jTree1.getSelectionPath().getParentPath().getLastPathComponent(),
-                        jTree1.getSelectionPath().getLastPathComponent()
-                )
-        )
-                .questions.add(new Question(null));
-       }
-       catch(NullPointerException e )
-               {System.out.println("null point exeption");}
-        
-        
-        
-        
+        try {
+            this.questionBlocks.get(
+                    jTree1.getModel().getIndexOfChild(
+                            jTree1.getSelectionPath().getParentPath().getLastPathComponent(),
+                            jTree1.getSelectionPath().getLastPathComponent()
+                    )
+            ).questions.add(new Question(null));
+        } catch (NullPointerException e) {
+            System.out.println("null point exeption");
+        }
+
+
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode)jTree1.getLastSelectedPathComponent();
-       
-        
-        if (selectedNode == null) return;
-        
-        DefaultMutableTreeNode parent = (DefaultMutableTreeNode)selectedNode;
-      
-        
-        if (parent == null) return;
-        try 
-        {
-          if ("Тест".equals(String.valueOf(jTree1.getSelectionPath().getParentPath().getLastPathComponent())) ) return;   
-        } 
-        catch (NullPointerException e) {
+        DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) jTree1.getLastSelectedPathComponent();
+
+        if (selectedNode == null) {
+            return;
+        }
+
+        DefaultMutableTreeNode parent = (DefaultMutableTreeNode) selectedNode;
+
+        if (parent == null) {
+            return;
+        }
+        try {
+            if ("Тест".equals(String.valueOf(jTree1.getSelectionPath().getParentPath().getLastPathComponent()))) {
+                return;
+            }
+        } catch (NullPointerException e) {
             System.out.println(e.getMessage());
         }
-       
-        
-        
-        DefaultMutableTreeNode newNode = new DefaultMutableTreeNode("Блок вопросов " + (treeModel.getChildCount(jTree1.getSelectionPath().getLastPathComponent())+1) );
+
+        DefaultMutableTreeNode newNode = new DefaultMutableTreeNode("Блок вопросов " + (treeModel.getChildCount(jTree1.getSelectionPath().getLastPathComponent()) + 1));
         DefaultMutableTreeNode newLeaf = new DefaultMutableTreeNode("Вопрос 1");
         newLeaf.setAllowsChildren(false);
         int selectedIndex = parent.getIndex(selectedNode);
-        
-        
-        treeModel.insertNodeInto(newNode, parent, selectedIndex + treeModel.getChildCount(parent)+1);
+
+        treeModel.insertNodeInto(newNode, parent, selectedIndex + treeModel.getChildCount(parent) + 1);
         treeModel.insertNodeInto(newLeaf, newNode, selectedIndex + 1);
-     
+
         // Отображение нового узла.
-        TreeNode [] nodes = treeModel.getPathToRoot(newNode);
+        TreeNode[] nodes = treeModel.getPathToRoot(newNode);
         TreePath path = new TreePath(nodes);
         jTree1.scrollPathToVisible(path);
         System.out.println(parent);
         System.out.println(selectedIndex);
-        
+
         //
         try {
-           
-            
-        this.questionBlocks.add(new QuestionBlock() );
-        Question question = new Question(null);
-        question.addAnswer(false, null);
-      
-      this.questionBlocks.get(QuestionBlockIndex).questions.add(question);
-      QuestionBlockIndex++;
-       }
-       catch(NullPointerException e )
-               {System.out.println("null point exeption");}
-        
-        
+
+            this.questionBlocks.add(new QuestionBlock());
+            Question question = new Question(null);
+            question.addAnswer(false, null);
+
+            this.questionBlocks.get(QuestionBlockIndex).questions.add(question);
+            QuestionBlockIndex++;
+        } catch (NullPointerException e) {
+            System.out.println("null point exeption");
+        }
+
+
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        
+
                 //jLabel4.setText(String.valueOf(jList1.isSelectedIndex(0)));
-                //jLabel5.setText(String.valueOf(listModel.getElementAt(0)));
-                System.out.println(listModel.getSize());
-               for(int i=0; i<listModel.getSize(); i++){
-                     System.out.print(String.valueOf(listModel.getElementAt(i)) + " ");
-                     System.out.println(String.valueOf(jList1.isSelectedIndex(i)));
-                         
-                     
-                }
-                
-               
-               
+        //jLabel5.setText(String.valueOf(listModel.getElementAt(0)));
+        System.out.println(listModel.getSize());
+        for (int i = 0; i < listModel.getSize(); i++) {
+            System.out.print(String.valueOf(listModel.getElementAt(i)) + " ");
+            System.out.println(String.valueOf(jList1.isSelectedIndex(i)));
+
+        }
+
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -485,67 +443,55 @@ System.out.println(gP.getPerl());
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         listModel.addElement(jTextField1.getText());
-         jTextField1.setText(null);
+        listModel.addElement(jTextField1.getText());
+        jTextField1.setText(null);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-       listModel.remove(jList1.getSelectedIndex());
+        listModel.remove(jList1.getSelectedIndex());
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jTree1ValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_jTree1ValueChanged
-       
+
         //this.jTextArea1.setText("");
         //this.listModel.clear();
         this.jLabel3.setText(null);
-       try{
-        int QuestionBlockIndex = jTree1.getModel().getIndexOfChild( 
-            jTree1.getSelectionPath().getParentPath().getParentPath().getLastPathComponent(),
-            jTree1.getSelectionPath().getParentPath().getLastPathComponent());
-        int QuestionIndex = jTree1.getModel().getIndexOfChild( 
-            jTree1.getSelectionPath().getParentPath().getLastPathComponent(),
-            jTree1.getSelectionPath().getLastPathComponent());
-    
-        
-        if (this.questionBlocks.get(QuestionBlockIndex).getQuestionName(QuestionIndex) != null){
-            this.jTextArea1.setText(this.questionBlocks.get(QuestionBlockIndex).getQuestionName(QuestionIndex));
-           for (int i = 0; this.questionBlocks.get(QuestionBlockIndex).questions.get(QuestionIndex).answers.size()>i; i++ ){
-               
-           }
-           for(int i = 0; i<this.questionBlocks.get(QuestionBlockIndex).questions.get(QuestionIndex).answers.size(); i++){
-               this.listModel.addElement(questionBlocks.get(QuestionBlockIndex).getAnswerText(QuestionIndex, i));
-              
-               if (questionBlocks.get(QuestionBlockIndex).getAnswerCorrect(QuestionIndex, i) == true){
-                   
-                   
-                   
-                           this.jList1.setSelectionInterval(i,2);
-                          
-               }
-           }
-           
-        
-        } }
-        catch(NullPointerException e ){
+        try {
+            int QuestionBlockIndex = jTree1.getModel().getIndexOfChild(
+                    jTree1.getSelectionPath().getParentPath().getParentPath().getLastPathComponent(),
+                    jTree1.getSelectionPath().getParentPath().getLastPathComponent());
+            int QuestionIndex = jTree1.getModel().getIndexOfChild(
+                    jTree1.getSelectionPath().getParentPath().getLastPathComponent(),
+                    jTree1.getSelectionPath().getLastPathComponent());
+
+            if (this.questionBlocks.get(QuestionBlockIndex).getQuestionName(QuestionIndex) != null) {
+                this.jTextArea1.setText(this.questionBlocks.get(QuestionBlockIndex).getQuestionName(QuestionIndex));
+                for (int i = 0; this.questionBlocks.get(QuestionBlockIndex).questions.get(QuestionIndex).answers.size() > i; i++) {
+
+                }
+                for (int i = 0; i < this.questionBlocks.get(QuestionBlockIndex).questions.get(QuestionIndex).answers.size(); i++) {
+                    this.listModel.addElement(questionBlocks.get(QuestionBlockIndex).getAnswerText(QuestionIndex, i));
+
+                    if (questionBlocks.get(QuestionBlockIndex).getAnswerCorrect(QuestionIndex, i) == true) {
+
+                        this.jList1.setSelectionInterval(i, 2);
+
+                    }
+                }
+
+            }
+        } catch (NullPointerException e) {
             System.out.println("NULL POINT");
-            
+
         }
-        
-      
-        
+
+
     }//GEN-LAST:event_jTree1ValueChanged
-    
-    
-    
+
     public static void main(String args[]) {
-        
-         
-       
-        
+
     }
-    
-    
-   
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -572,6 +518,4 @@ System.out.println(gP.getPerl());
     private javax.swing.JTree jTree1;
     // End of variables declaration//GEN-END:variables
 
-   
-    }
-
+}
