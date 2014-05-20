@@ -24,6 +24,8 @@ public class GeneratePerl {
             this.parseToPerl.append("[\n");
 
             for (int j = 0; j < questionBlock.get(i).questions.size(); j++) {
+                if (questionBlock.get(i).questions.get(j).answers.size() > 1){
+                
 
                 for (int n = 0; n < questionBlock.get(i).questions.get(j).answers.size(); n++) {
                     if (questionBlock.get(i).getAnswerCorrect(j, n) == true) {
@@ -32,11 +34,11 @@ public class GeneratePerl {
                 }
 
                 if (numberTrueAnswer <= 1) {
-                    this.parseToPerl.append("{\n-qu=> '" + questionBlock.get(i).getQuestionName(j) + "'\n-sa => [");
+                    this.parseToPerl.append("{\n-qu=> '" + questionBlock.get(i).getQuestionName(j) + "',\n-sa => [");
 
                     for (int k = 0; k < questionBlock.get(i).questions.get(j).answers.size(); k++) {
 
-                        //запись праавильных ответов для singleAnswer вопросов
+                        //запись праавильного ответа для singleAnswer вопросов
                         if (questionBlock.get(i).getAnswerCorrect(j, k) == true) {
                             this.parseToPerl.append("'" + questionBlock.get(i).getAnswerText(j, k) + "',");
                             valueTrueAnswer = questionBlock.get(i).getAnswerText(j, k);
@@ -52,12 +54,12 @@ public class GeneratePerl {
 
                     }
                     this.parseToPerl.deleteCharAt(this.parseToPerl.length() - 1);
-                    this.parseToPerl.append("]\n}\n");
+                    this.parseToPerl.append("],\n},\n");
 
                 }
 
                 if (numberTrueAnswer > 1) {
-                    this.parseToPerl.append("{\n-qu=> '" + questionBlock.get(i).getQuestionName(j) + "'\n-ma => [\n-ta => [");
+                    this.parseToPerl.append("{\n-qu=> '" + questionBlock.get(i).getQuestionName(j) + "',\n-ma => [\n[");
                     for (int k = 0; k < questionBlock.get(i).questions.get(j).answers.size(); k++) {
                         if (questionBlock.get(i).getAnswerCorrect(j, k) == true) {
                             this.parseToPerl.append("'" + questionBlock.get(i).getAnswerText(j, k) + "',");
@@ -65,16 +67,18 @@ public class GeneratePerl {
                     }
 
                     this.parseToPerl.deleteCharAt(this.parseToPerl.length() - 1);
-                    this.parseToPerl.append("]\n-aa => [");
+                    this.parseToPerl.append("],\n [");
 
                     for (int k = 0; k < questionBlock.get(i).questions.get(j).answers.size(); k++) {
 
-                        this.parseToPerl.append("'" + questionBlock.get(i).getAnswerText(j, k) + "',");
+                       if (questionBlock.get(i).getAnswerCorrect(j, k) == false) {
+                            this.parseToPerl.append("'" + questionBlock.get(i).getAnswerText(j, k) + "',");
+                        }
 
                     }
 
                     this.parseToPerl.deleteCharAt(this.parseToPerl.length() - 1);
-                    this.parseToPerl.append("]\n]\n}\n");
+                    this.parseToPerl.append("],\n],\n}\n");
 
                 }
 
@@ -82,10 +86,17 @@ public class GeneratePerl {
                 valueTrueAnswer = null;
 
             }
+                if (questionBlock.get(i).questions.get(j).answers.size() == 1){
+                    this.parseToPerl.append("{\n-qu=> '" + questionBlock.get(i).getQuestionName(j) + "',\n-oa => [");
+                    this.parseToPerl.append("'" + questionBlock.get(i).getAnswerText(j, 0) + "']\n},");
+                    
+                }
 
-            this.parseToPerl.append("\n]");
+            }
+            
+            this.parseToPerl.append("\n],");
         }
-        this.parseToPerl.append("\n]");
+        this.parseToPerl.append("\n];");
     }
 
     public StringBuilder getPerl() {
