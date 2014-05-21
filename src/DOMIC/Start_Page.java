@@ -310,9 +310,9 @@ public class Start_Page extends javax.swing.JFrame {
 //Object parent = jTree1.getSelectionPath().getParentPath().getParentPath().getLastPathComponent();
 //Object child = jTree1.getSelectionPath().getParentPath().getLastPathComponent();
 
-        GeneratePerl gP = new GeneratePerl(this.questionBlocks);
+        Print gP = new Print(this.questionBlocks);
 
-        System.out.println(gP.getPerl());
+        System.out.println(gP.getPrint());
 
 //System.out.println(child);
 //System.out.println(parent);

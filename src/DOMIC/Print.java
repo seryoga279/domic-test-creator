@@ -12,16 +12,16 @@ import java.util.Formatter;
  *
  * @author Сергей
  */
-public class GeneratePerl {
+public class Print {
 
     StringBuilder parseToPerl = new StringBuilder();
 
-    GeneratePerl(ArrayList<QuestionBlock> questionBlock) {
+    Print(ArrayList<QuestionBlock> questionBlock) {
         String valueTrueAnswer = null;
         int numberTrueAnswer = 0;
-        this.parseToPerl.append("$test = [\n");
+        this.parseToPerl.append("$test = [");
         for (int i = 0; i < questionBlock.size(); i++) {
-            this.parseToPerl.append("[\n");
+            this.parseToPerl.append("\n[\n");
 
             for (int j = 0; j < questionBlock.get(i).questions.size(); j++) {
                 if (questionBlock.get(i).questions.get(j).answers.size() > 1){
@@ -34,13 +34,13 @@ public class GeneratePerl {
                 }
 
                 if (numberTrueAnswer <= 1) {
-                    this.parseToPerl.append("{\n-qu=> '" + questionBlock.get(i).getQuestionName(j) + "',\n-sa => [");
+                    this.parseToPerl.append("{\n-qu=> '").append(questionBlock.get(i).getQuestionName(j)).append("',\n-sa => [");
 
                     for (int k = 0; k < questionBlock.get(i).questions.get(j).answers.size(); k++) {
 
                         //запись праавильного ответа для singleAnswer вопросов
                         if (questionBlock.get(i).getAnswerCorrect(j, k) == true) {
-                            this.parseToPerl.append("'" + questionBlock.get(i).getAnswerText(j, k) + "',");
+                            this.parseToPerl.append("'").append(questionBlock.get(i).getAnswerText(j, k)).append("',");
                             valueTrueAnswer = questionBlock.get(i).getAnswerText(j, k);
                         }
 
@@ -49,7 +49,7 @@ public class GeneratePerl {
                     //запись не праавильных ответов для singleAnswer вопросов
                     for (int k = 0; k < questionBlock.get(i).questions.get(j).answers.size(); k++) {
                         if (questionBlock.get(i).getAnswerText(j, k) != valueTrueAnswer) {
-                            this.parseToPerl.append("'" + questionBlock.get(i).getAnswerText(j, k) + "',");
+                            this.parseToPerl.append("'").append(questionBlock.get(i).getAnswerText(j, k)).append("',");
                         }
 
                     }
@@ -59,26 +59,26 @@ public class GeneratePerl {
                 }
 
                 if (numberTrueAnswer > 1) {
-                    this.parseToPerl.append("{\n-qu=> '" + questionBlock.get(i).getQuestionName(j) + "',\n-ma => [\n[");
+                    this.parseToPerl.append("{\n-qu=> '").append(questionBlock.get(i).getQuestionName(j)).append("',\n-ma => [\n[");
                     for (int k = 0; k < questionBlock.get(i).questions.get(j).answers.size(); k++) {
                         if (questionBlock.get(i).getAnswerCorrect(j, k) == true) {
-                            this.parseToPerl.append("'" + questionBlock.get(i).getAnswerText(j, k) + "',");
+                            this.parseToPerl.append("'").append(questionBlock.get(i).getAnswerText(j, k)).append("',");
                         }
                     }
 
                     this.parseToPerl.deleteCharAt(this.parseToPerl.length() - 1);
-                    this.parseToPerl.append("],\n [");
+                    this.parseToPerl.append("],\n[");
 
                     for (int k = 0; k < questionBlock.get(i).questions.get(j).answers.size(); k++) {
 
                        if (questionBlock.get(i).getAnswerCorrect(j, k) == false) {
-                            this.parseToPerl.append("'" + questionBlock.get(i).getAnswerText(j, k) + "',");
+                            this.parseToPerl.append("'").append(questionBlock.get(i).getAnswerText(j, k)).append("',");
                         }
 
                     }
 
                     this.parseToPerl.deleteCharAt(this.parseToPerl.length() - 1);
-                    this.parseToPerl.append("],\n],\n}\n");
+                    this.parseToPerl.append("],\n],\n},\n");
 
                 }
 
@@ -87,8 +87,8 @@ public class GeneratePerl {
 
             }
                 if (questionBlock.get(i).questions.get(j).answers.size() == 1){
-                    this.parseToPerl.append("{\n-qu=> '" + questionBlock.get(i).getQuestionName(j) + "',\n-oa => [");
-                    this.parseToPerl.append("'" + questionBlock.get(i).getAnswerText(j, 0) + "']\n},");
+                    this.parseToPerl.append("{\n-qu=> '").append(questionBlock.get(i).getQuestionName(j)).append("',\n-oa => [");
+                    this.parseToPerl.append("'").append(questionBlock.get(i).getAnswerText(j, 0)).append("']\n},\n");
                     
                 }
 
@@ -97,9 +97,10 @@ public class GeneratePerl {
             this.parseToPerl.append("\n],");
         }
         this.parseToPerl.append("\n];");
+        
     }
 
-    public StringBuilder getPerl() {
+    public StringBuilder getPrint() {
 
         return this.parseToPerl;
 
