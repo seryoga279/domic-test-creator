@@ -12,11 +12,11 @@ import java.util.Formatter;
  *
  * @author Сергей
  */
-public class Print {
+public class DecodePerl {
 
     StringBuilder parseToPerl = new StringBuilder();
 
-    Print(ArrayList<QuestionBlock> questionBlock) {
+    DecodePerl(ArrayList<QuestionBlock> questionBlock) {
         String valueTrueAnswer = null;
         int numberTrueAnswer = 0;
         this.parseToPerl.append("$test = [");

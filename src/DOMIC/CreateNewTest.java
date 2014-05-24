@@ -17,7 +17,7 @@ import javax.swing.tree.TreeSelectionModel;
  *
  * @author Сергей
  */
-public class Start_Page extends javax.swing.JFrame {
+public class CreateNewTest extends javax.swing.JFrame {
 
     public DefaultListModel listModel = new DefaultListModel();
     public DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode();
@@ -28,7 +28,7 @@ public class Start_Page extends javax.swing.JFrame {
     public int QuestionBlockIndex = 1;
    // public int QuestionIndex=0;
 
-    public Start_Page() {
+    public CreateNewTest() {
 
         initComponents();
 
@@ -310,7 +310,7 @@ public class Start_Page extends javax.swing.JFrame {
 //Object parent = jTree1.getSelectionPath().getParentPath().getParentPath().getLastPathComponent();
 //Object child = jTree1.getSelectionPath().getParentPath().getLastPathComponent();
 
-        Print gP = new Print(this.questionBlocks);
+        DecodePerl gP = new DecodePerl(this.questionBlocks);
 
         System.out.println(gP.getPrint());
 

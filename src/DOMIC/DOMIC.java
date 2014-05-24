@@ -18,7 +18,7 @@ public class DOMIC {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Start_Page().setVisible(true);
+                new StartPage().setVisible(true);
             }
         });
     }
