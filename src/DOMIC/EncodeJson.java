@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -26,16 +25,16 @@ public class EncodeJson {
     
     public ArrayList<QuestionBlock> questionBlocks = new ArrayList<>();
 
-    public EncodeJson(ArrayList<QuestionBlock> questionBlocks, String FilePatch) {
+    public EncodeJson(ArrayList<QuestionBlock> questionBlocks, String JsonArray) {
         
         
         JSONParser jsonParser = new JSONParser();
 
         try {
 
-            FileReader fileReader = new FileReader(FilePatch);
+           
 
-            JSONObject jsonObject = (JSONObject) jsonParser.parse(fileReader);
+            JSONObject jsonObject = (JSONObject) jsonParser.parse(JsonArray);
 
             JSONArray test = (JSONArray) jsonObject.get("test");
 
@@ -93,10 +92,6 @@ public class EncodeJson {
 
             System.out.println("");
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         } catch (ParseException e) {
             e.printStackTrace();
         }

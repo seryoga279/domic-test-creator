@@ -6,7 +6,10 @@
 package DOMIC;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
@@ -488,8 +491,16 @@ public class DomicTestCreator extends javax.swing.JFrame {
         final JFileChooser fileChooser = new JFileChooser();
         int returnVal = fileChooser.showOpenDialog(this);
         this.FilePatch = fileChooser.getSelectedFile().getAbsolutePath();
+        GeneratePerl gp = new GeneratePerl();
+        try {
+            gp.GeneratePerl(fileChooser.getSelectedFile());
+        } catch (IOException ex) {
+            Logger.getLogger(DomicTestCreator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        EncodeJson ej = new EncodeJson(this.questionBlocks,gp.getJson());
 
-        this.questionBlocks.clear();
+        /*
+                this.questionBlocks.clear();
         EncodeJson encodeJson = new EncodeJson(this.questionBlocks, FilePatch);
         this.questionBlocks = encodeJson.questionBlocks;
 
@@ -507,6 +518,8 @@ public class DomicTestCreator extends javax.swing.JFrame {
 
             }
         }
+                */
+        
 
 
     }//GEN-LAST:event_MenuFileOpenFileActionPerformed
