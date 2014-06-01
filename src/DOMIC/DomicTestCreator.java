@@ -40,7 +40,7 @@ public class DomicTestCreator extends javax.swing.JFrame {
         AnswerList.setLayoutOrientation(JList.VERTICAL);
         AnswerList.setModel(listModel);
         QuestionTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-        this.editable(false);
+       // this.editable(false);
 
         // Корневой узел
         DefaultMutableTreeNode root = new DefaultMutableTreeNode("Тест");
@@ -441,10 +441,10 @@ public class DomicTestCreator extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void QuestionTreeValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_QuestionTreeValueChanged
-        this.editable(false);
+        //this.editable(false);
         try {
             if ("Тест".equals(String.valueOf(QuestionTree.getSelectionPath().getParentPath().getParentPath().getLastPathComponent()))) {
-                this.editable(true);
+               // this.editable(true);
             }
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
@@ -497,7 +497,9 @@ public class DomicTestCreator extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(DomicTestCreator.class.getName()).log(Level.SEVERE, null, ex);
         }
-        EncodeJson ej = new EncodeJson(this.questionBlocks,gp.getJson());
+        EncodeJson ej = new EncodeJson(String.valueOf(gp.getJson()));
+        this.questionBlocks = ej.questionBlocks;
+        
 
         /*
                 this.questionBlocks.clear();

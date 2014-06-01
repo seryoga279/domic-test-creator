@@ -7,13 +7,10 @@ package DOMIC;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.util.Scanner;
 
 /**
  *
@@ -40,15 +37,14 @@ public class GeneratePerl {
     } catch(IOException e) {
         throw new RuntimeException(e);
     }
-         System.out.println(this.OpenFile);
+         //System.out.println(this.OpenFile);
 
         
         this.PerlScript.append(
                 "use JSON;"
                 + this.OpenFile
                 + "my %rec_hash = ('test' => $test);"
-                + "print encode_json \\%rec_hash;"
-                + "close ( InFile );");
+                + "print encode_json \\%rec_hash;");
         System.out.println(this.PerlScript);
        
         
