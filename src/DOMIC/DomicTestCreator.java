@@ -5,7 +5,8 @@
  */
 package DOMIC;
 
-
+import java.awt.FileDialog;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -13,6 +14,7 @@ import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
@@ -24,7 +26,7 @@ import javax.swing.tree.TreeSelectionModel;
 public class DomicTestCreator extends javax.swing.JFrame {
 
     public DefaultListModel listModel = new DefaultListModel();
-    public DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode();
+    protected DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode();
     public DefaultTreeModel treeModel = new DefaultTreeModel(rootNode);
     public MyCellRenderer renderer = new MyCellRenderer();
     public ArrayList<QuestionBlock> questionBlocks = new ArrayList<>();
@@ -43,11 +45,11 @@ public class DomicTestCreator extends javax.swing.JFrame {
        // this.editable(false);
 
         // Корневой узел
-        DefaultMutableTreeNode root = new DefaultMutableTreeNode("Тест");
+        rootNode = new DefaultMutableTreeNode("Тест");
         for (int i = 1; i < 2; i++) {
             // Содержимое корневого узла 
             DefaultMutableTreeNode folder = new DefaultMutableTreeNode("Блок вопросов " + i);
-            root.add(folder);
+            rootNode.add(folder);
 
             // Содержимое папок корневого узла
             DefaultMutableTreeNode leaf = new DefaultMutableTreeNode("вопрос " + i);
@@ -55,7 +57,7 @@ public class DomicTestCreator extends javax.swing.JFrame {
             folder.add(leaf);
 
         }
-        treeModel = new DefaultTreeModel(root, true);
+        treeModel = new DefaultTreeModel(rootNode, true);
         QuestionTree.setModel(treeModel);
 
         //jLabel4.setText(null);
@@ -96,7 +98,6 @@ public class DomicTestCreator extends javax.swing.JFrame {
         AddQuestionBlockButton = new javax.swing.JButton();
         AddQuestionButton = new javax.swing.JButton();
         AddAnswerButton = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
         Menu = new javax.swing.JMenuBar();
         MenuFile = new javax.swing.JMenu();
         MenuFileOpenFile = new javax.swing.JMenuItem();
@@ -128,11 +129,21 @@ public class DomicTestCreator extends javax.swing.JFrame {
         QuestionAreaScroll.setViewportView(QuestionArea);
 
         AnswerList.setCellRenderer(renderer);
+        AnswerList.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                AnswerListKeyReleased(evt);
+            }
+        });
         AnswerListScroll.setViewportView(AnswerList);
 
         AnswerField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AnswerFieldActionPerformed(evt);
+            }
+        });
+        AnswerField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                AnswerFieldKeyReleased(evt);
             }
         });
 
@@ -145,6 +156,11 @@ public class DomicTestCreator extends javax.swing.JFrame {
         QuestionTree.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
             public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
                 QuestionTreeValueChanged(evt);
+            }
+        });
+        QuestionTree.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                QuestionTreeKeyReleased(evt);
             }
         });
         QuestionTreeScroll.setViewportView(QuestionTree);
@@ -194,13 +210,6 @@ public class DomicTestCreator extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("Удалить");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
         MenuFile.setText("Файл");
 
         MenuFileOpenFile.setText("Открыть тест");
@@ -241,70 +250,63 @@ public class DomicTestCreator extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(Footer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(QuestionTreeScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(AddQuestionBlockButton, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(AddQuestionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(9, 9, 9)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(QuestionAreaScroll)
+                            .addComponent(QuestionTreeScroll, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                            .addComponent(AddQuestionBlockButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(AnswerField, javax.swing.GroupLayout.PREFERRED_SIZE, 603, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(ButtonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(246, 246, 246)))
-                                .addComponent(AnswerListScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(AddAnswerButton)))
-                        .addContainerGap(38, Short.MAX_VALUE))
+                                        .addGap(415, 415, 415)
+                                        .addComponent(ButtonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(AnswerField, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(AnswerListScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE))
+                            .addComponent(QuestionAreaScroll)))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(TestLabel, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(HelpLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1043, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(AddQuestionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(645, 645, 645)
+                        .addComponent(AddAnswerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(TestLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(HelpLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(QuestionAreaScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17)
-                        .addComponent(AnswerListScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(AnswerField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(64, 64, 64)
-                        .addComponent(ButtonSave)
-                        .addGap(61, 61, 61))
-                    .addComponent(QuestionTreeScroll, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(AddQuestionBlockButton)
-                            .addComponent(AddQuestionButton))
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(QuestionAreaScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(AnswerField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(46, 46, 46)
+                                .addComponent(ButtonSave))
+                            .addComponent(AnswerListScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(QuestionTreeScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(AddQuestionBlockButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(AddAnswerButton)
-                            .addComponent(jButton5))
-                        .addGap(18, 18, 18)))
+                            .addComponent(AddQuestionButton))))
+                .addGap(18, 18, 18)
                 .addComponent(Footer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
@@ -432,19 +434,21 @@ public class DomicTestCreator extends javax.swing.JFrame {
     }//GEN-LAST:event_AnswerFieldActionPerformed
 
     private void AddAnswerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddAnswerButtonActionPerformed
-        listModel.addElement(AnswerField.getText());
-        AnswerField.setText(null);
-    }//GEN-LAST:event_AddAnswerButtonActionPerformed
+        if (!AnswerField.getText().equals("")) {
+            listModel.addElement(AnswerField.getText());
+            AnswerField.setText(null);
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        listModel.remove(AnswerList.getSelectedIndex());
-    }//GEN-LAST:event_jButton5ActionPerformed
+        } else {
+            JOptionPane.showMessageDialog(this, "Нельзя добавлять пустой ответ", "Ошибка", JOptionPane.WARNING_MESSAGE);
+
+        }
+    }//GEN-LAST:event_AddAnswerButtonActionPerformed
 
     private void QuestionTreeValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_QuestionTreeValueChanged
         //this.editable(false);
         try {
             if ("Тест".equals(String.valueOf(QuestionTree.getSelectionPath().getParentPath().getParentPath().getLastPathComponent()))) {
-               // this.editable(true);
+                // this.editable(true);
             }
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
@@ -486,8 +490,8 @@ public class DomicTestCreator extends javax.swing.JFrame {
     }//GEN-LAST:event_QuestionTreeValueChanged
 
     private void MenuFileOpenFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuFileOpenFileActionPerformed
-        
-        
+        this.rootNode.removeAllChildren();
+        treeModel.reload();
         final JFileChooser fileChooser = new JFileChooser();
         int returnVal = fileChooser.showOpenDialog(this);
         this.FilePatch = fileChooser.getSelectedFile().getAbsolutePath();
@@ -499,31 +503,29 @@ public class DomicTestCreator extends javax.swing.JFrame {
         }
         EncodeJson ej = new EncodeJson(String.valueOf(gp.getJson()));
         this.questionBlocks = ej.questionBlocks;
+
+
+       
         
+         
 
-        /*
-                this.questionBlocks.clear();
-        EncodeJson encodeJson = new EncodeJson(this.questionBlocks, FilePatch);
-        this.questionBlocks = encodeJson.questionBlocks;
+         // Корневой узел
+          rootNode = new DefaultMutableTreeNode("Тест");
+         for (int i = 0; i < this.questionBlocks.size(); i++) {
+         // Содержимое корневого узла 
+         DefaultMutableTreeNode folder = new DefaultMutableTreeNode("Блок вопросов " + (i+1));
+         rootNode.add(folder);
+         for (int j = 0; j < this.questionBlocks.get(i).questions.size(); j++) {
+         // Содержимое папок корневого узла
+         DefaultMutableTreeNode leaf = new DefaultMutableTreeNode("вопрос " + (j+1));
+         leaf.setAllowsChildren(false);
+         folder.add(leaf);
 
-        // Корневой узел
-        DefaultMutableTreeNode root = new DefaultMutableTreeNode("Тест");
-        for (int i = 1; i < this.questionBlocks.size(); i++) {
-            // Содержимое корневого узла 
-            DefaultMutableTreeNode folder = new DefaultMutableTreeNode("Блок вопросов " + i);
-            root.add(folder);
-            for (int j = 1; j < this.questionBlocks.get(i).questions.size(); j++) {
-                // Содержимое папок корневого узла
-                DefaultMutableTreeNode leaf = new DefaultMutableTreeNode("вопрос " + i);
-                leaf.setAllowsChildren(false);
-                folder.add(leaf);
-
-            }
-        }
-                */
-        
-
-
+         }
+         }
+         treeModel = new DefaultTreeModel(rootNode, true);
+         QuestionTree.setModel(treeModel);
+         
     }//GEN-LAST:event_MenuFileOpenFileActionPerformed
 
     private void TestMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TestMenuActionPerformed
@@ -551,7 +553,77 @@ public class DomicTestCreator extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         DecodePerl decodePerl = new DecodePerl(this.questionBlocks);
         System.out.println(decodePerl.getPrint());
+
+        FileDialog fDialog = new FileDialog(this, "Open ...", FileDialog.SAVE);
+        fDialog.setVisible(true);
+        String path = fDialog.getDirectory() + fDialog.getFile();
+        File f = new File(path);
+        try {
+            f.createNewFile();
+        } catch (IOException ex) {
+            Logger.getLogger(DomicTestCreator.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void QuestionTreeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_QuestionTreeKeyReleased
+        if (evt.getKeyText(evt.getKeyCode()) == "Delete") {
+            TreePath currentSelection = QuestionTree.getSelectionPath();
+    if (currentSelection != null) {
+      DefaultMutableTreeNode currentNode = (DefaultMutableTreeNode) (currentSelection
+          .getLastPathComponent());
+      MutableTreeNode parent = (MutableTreeNode) (currentNode.getParent());
+      if (parent != null) {
+        treeModel.removeNodeFromParent(currentNode);
+        return;
+        
+      }
+    }
+
+        }
+    }//GEN-LAST:event_QuestionTreeKeyReleased
+
+    private void AnswerListKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AnswerListKeyReleased
+        if (evt.getKeyText(evt.getKeyCode()) == "Delete") {
+            listModel.remove(AnswerList.getSelectedIndex());
+
+        }
+        if (evt.getKeyText(evt.getKeyCode()) == "Enter") {
+            Question question = new Question(QuestionArea.getText());
+            for (int i = 0; i < listModel.getSize(); i++) {
+                String text = String.valueOf(listModel.getElementAt(i));
+                boolean correct = AnswerList.isSelectedIndex(i);
+                question.addAnswer(correct, text);
+
+            }
+
+            this.questionBlocks.get(QuestionTree.getModel().getIndexOfChild(
+                    QuestionTree.getSelectionPath().getParentPath().getParentPath().getLastPathComponent(),
+                    QuestionTree.getSelectionPath().getParentPath().getLastPathComponent()))
+                    .addQuestion(
+                            QuestionTree.getModel().getIndexOfChild(
+                                    QuestionTree.getSelectionPath().getParentPath().getLastPathComponent(),
+                                    QuestionTree.getSelectionPath().getLastPathComponent()), question);
+
+            this.jLabel3.setText("save");
+
+        }
+    }//GEN-LAST:event_AnswerListKeyReleased
+
+    private void AnswerFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AnswerFieldKeyReleased
+
+        if (evt.getKeyText(evt.getKeyCode()) == "Enter") {
+            if (!AnswerField.getText().equals("")) {
+                listModel.addElement(AnswerField.getText());
+                AnswerField.setText(null);
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Нельзя добавлять пустой ответ", "Ошибка", JOptionPane.WARNING_MESSAGE);
+
+            }
+
+        }
+
+    }//GEN-LAST:event_AnswerFieldKeyReleased
 
     public static void main(String args[]) {
 
@@ -560,9 +632,8 @@ public class DomicTestCreator extends javax.swing.JFrame {
     public void editable(boolean val) {
 
         this.AddAnswerButton.setEnabled(val);
-        
+
         this.ButtonSave.setEnabled(val);
-        this.jButton5.setEnabled(val);
         this.AddQuestionBlockButton.setEnabled(val);
         this.AddQuestionButton.setEnabled(val);
         this.QuestionArea.setEnabled(val);
@@ -591,7 +662,6 @@ public class DomicTestCreator extends javax.swing.JFrame {
     private javax.swing.JScrollPane QuestionTreeScroll;
     private javax.swing.JLabel TestLabel;
     private javax.swing.JMenuItem TestMenu;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
