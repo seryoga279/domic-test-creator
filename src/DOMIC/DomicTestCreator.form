@@ -76,33 +76,10 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="Footer" alignment="0" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
+              <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="QuestionTreeScroll" alignment="1" pref="230" max="32767" attributes="0"/>
-                          <Component id="AddQuestionBlockButton" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="415" max="-2" attributes="0"/>
-                                      <Component id="ButtonSave" min="-2" pref="76" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="AnswerField" min="-2" pref="617" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="AnswerListScroll" pref="186" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="QuestionAreaScroll" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="TestLabel" alignment="0" max="32767" attributes="0"/>
                           <Component id="HelpLabel" alignment="0" pref="1043" max="32767" attributes="0"/>
@@ -110,14 +87,36 @@
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="AddQuestionButton" min="-2" pref="230" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="645" max="-2" attributes="0"/>
-                      <Component id="AddAnswerButton" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="QuestionTreeScroll" alignment="1" pref="230" max="32767" attributes="0"/>
+                          <Component id="AddQuestionBlockButton" alignment="0" max="32767" attributes="0"/>
+                          <Component id="AddQuestionButton" alignment="1" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="AnswerField" min="-2" pref="617" max="-2" attributes="0"/>
+                                          <Component id="ButtonSave" min="-2" pref="76" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="AnswerListScroll" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="QuestionAreaScroll" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="AddAnswerButton" min="-2" pref="163" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
           </Group>
+          <Component id="Footer" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -135,7 +134,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="AnswerField" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="ButtonSave" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="AnswerListScroll" min="-2" pref="209" max="-2" attributes="0"/>
@@ -146,15 +145,14 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="AddQuestionBlockButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="AddAnswerButton" min="-2" max="-2" attributes="0"/>
-                          <Component id="AddQuestionButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="AddQuestionButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="AddAnswerButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Component id="Footer" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
